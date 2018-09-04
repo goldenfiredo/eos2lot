@@ -1,0 +1,185 @@
+{
+   "version": "eosio::abi/1.0",
+   "types": [{
+      "new_type_name": "account_name",
+      "type": "name"
+   }],
+  "structs": [{
+      "name": "transfer",
+      "base": "",
+      "fields": [
+        {"name":"from", "type":"account_name"},
+        {"name":"to", "type":"account_name"},
+        {"name":"quantity", "type":"asset"},
+        {"name":"memo", "type":"string"}
+      ]
+    },{
+     "name": "create",
+     "base": "",
+     "fields": [
+        {"name":"issuer", "type":"account_name"},
+        {"name":"maximum_supply", "type":"asset"}
+     ]
+  },{
+     "name": "issue",
+     "base": "",
+     "fields": [
+        {"name":"to", "type":"account_name"},
+        {"name":"quantity", "type":"asset"},
+        {"name":"memo", "type":"string"}
+     ]
+  },{
+      "name": "account",
+      "base": "",
+      "fields": [
+        {"name":"balance", "type":"asset"}
+      ]
+    },{
+      "name": "currency_stats",
+      "base": "",
+      "fields": [
+        {"name":"supply", "type":"asset"},
+        {"name":"max_supply", "type":"asset"},
+        {"name":"issuer", "type":"account_name"}
+      ]
+    },{
+      "name": "refund",
+      "base": "",
+      "fields": [
+        { "name": "from", "type": "name" },
+        { "name": "to", "type": "name" },
+        { "name": "quantity", "type": "asset" },
+        { "name": "typ", "type": "string" },
+        { "name": "period", "type": "string" },
+        { "name": "memo", "type": "string" }
+      ]
+    },{
+      "name": "init",
+      "base": "",
+      "fields": [
+        {"name":"typ", "type":"string"},
+        {"name":"period", "type":"string"},
+        {"name":"stop", "type":"uint8"},
+        {"name":"memo", "type":"string"}
+      ]
+    },{
+      "name": "issue1",
+      "base": "",
+      "fields": [
+        {"name":"to", "type":"name"},
+        {"name":"quantity", "type":"asset"},
+        {"name":"last_issue_time", "type":"uint64"},
+        {"name":"memo", "type":"string"}
+      ]
+    },{
+      "name": "hit",
+      "base": "",
+      "fields": [
+        {"name":"id", "type":"uint64"},
+        {"name":"from", "type":"name"},
+        {"name":"quantity", "type":"asset"},
+        {"name":"now", "type":"uint64"},
+        {"name":"memo", "type":"string"},
+        {"name":"period", "type":"string"},
+        {"name":"typ", "type":"string"}
+      ]
+    },{
+      "name": "refund1",
+      "base": "",
+      "fields": [
+        {"name":"id", "type":"uint64"},
+        {"name":"to", "type":"name"},
+        {"name":"quantity", "type":"asset"},
+        {"name":"quantity_fee", "type":"asset"},
+        {"name":"quantity_faucet", "type":"asset"},
+        {"name":"now", "type":"uint64"},
+        {"name":"memo", "type":"string"},
+        {"name":"period", "type":"string"},
+        {"name":"typ", "type":"string"}
+      ]
+    },{
+      "name": "config",
+      "base": "",
+      "fields": [
+        {"name":"id", "type":"uint64"},
+        {"name":"typ", "type":"string"},
+        {"name":"period", "type":"string"},
+        {"name":"stop", "type":"bool"},
+        {"name":"memo", "type":"string"},
+        {"name":"start_index", "type":"uint64"},
+        {"name":"end_index", "type":"uint64"},
+        {"name":"total_hit", "type":"uint32"},
+        {"name":"total_amount", "type":"uint32"}
+      ]
+    }
+  ],
+  "actions": [{
+      "name": "transfer",
+      "type": "transfer",
+      "ricardian_contract": ""
+    },{
+      "name": "issue",
+      "type": "issue",
+      "ricardian_contract": ""
+    }, {
+      "name": "create",
+      "type": "create",
+      "ricardian_contract": ""
+    },{
+      "name": "refund",
+      "type": "refund",
+      "ricardian_contract": ""
+    },{
+      "name": "init",
+      "type": "init",
+      "ricardian_contract": ""
+    }
+
+  ],
+  "tables": [{
+      "name": "accounts",
+      "type": "account",
+      "index_type": "i64",
+      "key_names" : ["currency"],
+      "key_types" : ["uint64"]
+    },{
+      "name": "stat",
+      "type": "currency_stats",
+      "index_type": "i64",
+      "key_names" : ["currency"],
+      "key_types" : ["uint64"]
+    },{
+      "name": "issue",
+      "index_type": "i64",
+      "key_names": [ "id"],
+      "key_types": [ "uint64" ],
+      "type": "issue1"
+    },{
+      "name": "hit",
+      "index_type": "i64",
+      "key_names": [ "id"],
+      "key_types": [ "uint64" ],
+      "type": "hit"
+    },{
+      "name": "hit3d",
+      "index_type": "i64",
+      "key_names": [ "id"],
+      "key_types": [ "uint64" ],
+      "type": "hit"
+    },{
+      "name": "refund1",
+      "index_type": "i64",
+      "key_names": [ "id"],
+      "key_types": [ "uint64" ],
+      "type": "refund1"
+    },{
+      "name": "config2",
+      "index_type": "i64",
+      "key_names": [ "id"],
+      "key_types": [ "uint64" ],
+      "type": "config"
+    }
+  ],
+  "ricardian_clauses": [],
+  "abi_extensions": []
+}
